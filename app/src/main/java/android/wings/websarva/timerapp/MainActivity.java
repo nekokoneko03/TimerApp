@@ -50,11 +50,12 @@ public class MainActivity extends AppCompatActivity {
                     timeroperation.timer_reset_process();
                     break;
                 case R.id.button_screen_transition:
-                    Intent intent = new Intent(getApplication(), MainActivity2.class);
-                    startActivity(intent);
+                    timeroperation.screen_transition_process();
+                    break;
             }
         }
     }
+
     public class timerOperation {
 
         Timer timer = new Timer();
@@ -85,6 +86,12 @@ public class MainActivity extends AppCompatActivity {
                 is_timer_started = false;
                 is_paused = true;
             }
+        }
+        public void screen_transition_process() {
+            int send_second = tt.getSec();
+            Intent intent = new Intent(getApplication(), MainActivity2.class);
+            intent.putExtra("send_second", send_second);
+            startActivity(intent);
         }
     }
 
