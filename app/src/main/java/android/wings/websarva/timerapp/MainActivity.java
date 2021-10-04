@@ -1,14 +1,12 @@
 package android.wings.websarva.timerapp;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Locale;
 import java.util.Timer;
@@ -27,10 +25,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        TextView tv_time = findViewById(R.id.tv_time);
         Button bt_start = findViewById(R.id.button_start);
         Button bt_reset = findViewById(R.id.button_reset);
         Button bt_screen_transition = findViewById(R.id.button_screen_transition);
         HelloListener listener = new HelloListener();
+        tv_time.setOnClickListener(listener);
         bt_start.setOnClickListener(listener);
         bt_reset.setOnClickListener(listener);
         bt_screen_transition.setOnClickListener(listener);
@@ -49,7 +49,10 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.button_reset:
                     timeroperation.timer_reset_process();
                     break;
-                case R.id.button_screen_transition:
+//                case R.id.button_screen_transition:
+//                    timeroperation.screen_transition_process();
+//                    break;
+                case R.id.tv_time:
                     timeroperation.screen_transition_process();
                     break;
             }
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     public class timerOperation {
 
         Timer timer = new Timer();
-        TextView tv_Time = findViewById(R.id.text_time);
+        TextView tv_Time = findViewById(R.id.tv_time);
         MainTimerTask tt = new MainTimerTask();
         Button bt_start = findViewById(R.id.button_start);
         Button bt_reset = findViewById(R.id.button_reset);
@@ -99,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         int sec = 3120;
         boolean is_switched = false;
         String converted_time;
-        TextView tv_Time = findViewById(R.id.text_time);
+        TextView tv_Time = findViewById(R.id.tv_time);
 
         @Override
         public void run() {

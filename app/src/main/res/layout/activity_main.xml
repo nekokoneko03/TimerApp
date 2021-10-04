@@ -7,9 +7,11 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/text_time"
+        android:id="@+id/tv_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="auto"
         android:text="52:00"
         android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,7 +30,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_reset"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_time"
+        app:layout_constraintTop_toBottomOf="@+id/tv_time"
         app:layout_constraintVertical_bias="0.331" />
 
     <Button
@@ -41,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_start"
-        app:layout_constraintTop_toBottomOf="@+id/text_time"
+        app:layout_constraintTop_toBottomOf="@+id/tv_time"
         app:layout_constraintVertical_bias="0.331" />
 
     <Button
@@ -52,5 +54,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_time" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_time" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
