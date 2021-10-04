@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         public void screen_transition_process() {
-            int send_second = tt.getSec();
+            int send_second = base_sec;
             Intent intent = new Intent(getApplication(), MainActivity2.class);
             intent.putExtra("send_second", send_second);
             startActivity(intent);
