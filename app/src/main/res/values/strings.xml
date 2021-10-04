@@ -6,10 +6,10 @@
     <string name="bt_reset">リセット</string>
     <string name="dialog_show_btn">画面遷移テスト</string>
     <string name="dialog_title">ダイアログだよ。</string>
-    <string name="dialog_msg">時間を（）にセットしますか？</string>
+    <string name="dialog_msg">時間を%sにセットしますか？</string>
     <string name="dialog_btn_ok">はい</string>
     <string name="dialog_btn_ng">いいえ</string>
-    <string name="dialog_ok_toast">時間を（）にセットしました。</string>
+    <string name="dialog_ok_toast">時間を%sにセットしました。</string>
     <string name="dialog_ng_toast">キャンセルしました</string>
 
     <string-array name="time_list">

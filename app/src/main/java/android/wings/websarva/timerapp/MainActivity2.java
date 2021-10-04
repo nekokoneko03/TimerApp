@@ -2,6 +2,7 @@ package android.wings.websarva.timerapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,6 +30,8 @@ public class MainActivity2 extends AppCompatActivity {
 //        TextView tv_test = findViewById(R.id.tv_test);
 //        tv_test.setText(Integer.toString(received_second));
 
+        ConfirmDialogFragment test = new ConfirmDialogFragment();
+
         ListView lvTime = findViewById(R.id.lvTime);
         List<String> timeList = new ArrayList<>();
         timeList.add("52:00");
@@ -52,11 +55,20 @@ public class MainActivity2 extends AppCompatActivity {
         }
     }
 
+    public void backScreen() {
+        finish();
+    }
+
     private class ListItemClickListener implements AdapterView.OnItemClickListener {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            String selected_time = (String) parent.getItemAtPosition(position);
+            Log.v("selected", selected_time);
             ConfirmDialogFragment dialogFragment = new ConfirmDialogFragment();
+            Bundle args = new Bundle();
+            args.putString("VALUE01", selected_time);
+            dialogFragment.setArguments(args);
             dialogFragment.show(getSupportFragmentManager(), "ConfirmDialogFragment");
         }
     }
