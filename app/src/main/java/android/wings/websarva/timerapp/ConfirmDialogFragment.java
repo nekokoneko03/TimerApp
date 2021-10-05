@@ -34,12 +34,10 @@ public class ConfirmDialogFragment extends DialogFragment {
             switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
                     msg = String.format(getString(R.string.dialog_ok_toast), str01);
-                    ma2.setDialogResult(true);
-                    ma2.dialogClosedProcess();
+                    ma2.dialogClosedProcess(str01, true);
                     break;
                 case DialogInterface.BUTTON_NEGATIVE:
                     msg = getString(R.string.dialog_ng_toast);
-                    ma2.setDialogResult(false);
                     break;
             }
             Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();

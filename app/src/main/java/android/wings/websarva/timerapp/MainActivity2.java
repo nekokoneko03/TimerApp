@@ -17,7 +17,7 @@ import java.util.List;
 public class MainActivity2 extends AppCompatActivity {
 
     boolean is_pushed_yes = false;
-    String selected_time;
+    public static int selected_sec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        int received_second = intent.getIntExtra("send_second", 0);
+        selected_sec = intent.getIntExtra("send_second", 0);
 
 //        TextView tv_test = findViewById(R.id.tv_test);
 //        tv_test.setText(Integer.toString(received_second));
@@ -54,41 +54,32 @@ public class MainActivity2 extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
+            Intent intent = new Intent();
+            intent.putExtra("SelectedTime", selected_sec);
+            setResult(RESULT_OK, intent);
             finish();
         }
-    }
-
-    public void backScreen() {
-        finish();
-    }
-
-    public void dialogClosedProcess() {
-        if (is_pushed_yes) {
-            ListItemClickListener test = new ListItemClickListener();
-            Intent intent = new Intent();
-            intent.putExtra("SelectedTime", "nekokuso");
-            setResult(RESULT_OK, intent);
-            Log.i("onClicked", selected_time);
-        }
-    }
-
-    public void setDialogResult(boolean value) {
-        //Log.i("onClick", String.valueOf(value));
-        this.is_pushed_yes = value;
-        //Log.i("onClicked", String.valueOf(is_pushed_yes));
     }
 
     private class ListItemClickListener implements AdapterView.OnItemClickListener {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            selected_time = (String) parent.getItemAtPosition(position);
-            Log.i("selected", selected_time);
+            String tmp_selected_time = (String) parent.getItemAtPosition(position);
+            Log.i("selected", tmp_selected_time);
             ConfirmDialogFragment dialogFragment = new ConfirmDialogFragment();
             Bundle args = new Bundle();
-            args.putString("VALUE01", selected_time);
+            args.putString("VALUE01", tmp_selected_time);
             dialogFragment.setArguments(args);
             dialogFragment.show(getSupportFragmentManager(), "ConfirmDialogFragment");
+        }
+    }
+
+    public void dialogClosedProcess(String str, boolean hi) {
+        if (hi) {
+            selected_sec = str;
+        } else {
+            selected_sec = received
         }
     }
 }

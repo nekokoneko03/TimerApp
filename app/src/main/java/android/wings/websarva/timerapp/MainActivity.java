@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     boolean is_once_started = false;
     boolean is_paused = false;
     public static final String EXTRA_DATA = "YourPackageName.MESSAGE";
-    static final int RESULT_SUBACTIVITY = 1000;
+    static final int REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +39,16 @@ public class MainActivity extends AppCompatActivity {
         bt_screen_transition.setOnClickListener(listener);
     }
 
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         TextView tv_time = findViewById(R.id.tv_time);
 
-        if (resultCode == RESULT_OK && requestCode == RESULT_SUBACTIVITY && null != data) {
-            String res = data.getStringExtra(MainActivity.EXTRA_DATA);
-            Log.i("onClick", String.valueOf(res));
-            tv_time.setText(res);
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE && null != data) {
+            Bundle bundle = data.getExtras();
+            String baba = bundle.getString("SelectedTime");
+            Log.i("uketotta", baba);
         }
     }
 
