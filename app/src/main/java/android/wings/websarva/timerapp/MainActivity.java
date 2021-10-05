@@ -2,6 +2,7 @@ package android.wings.websarva.timerapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     boolean is_timer_started = false;
     boolean is_once_started = false;
     boolean is_paused = false;
+    public static final String EXTRA_DATA = "YourPackageName.MESSAGE";
+    static final int RESULT_SUBACTIVITY = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +39,25 @@ public class MainActivity extends AppCompatActivity {
         bt_screen_transition.setOnClickListener(listener);
     }
 
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        TextView tv_time = findViewById(R.id.tv_time);
+
+        if (resultCode == RESULT_OK && requestCode == RESULT_SUBACTIVITY && null != data) {
+            String res = data.getStringExtra(MainActivity.EXTRA_DATA);
+            Log.i("onClick", String.valueOf(res));
+            tv_time.setText(res);
+        }
+    }
+
     private class HelloListener implements View.OnClickListener {
         timerOperation timeroperation = new timerOperation();
 
         @Override
         public void onClick(View view) {
             int id = view.getId();
-            switch(id) {
+            switch (id) {
                 case R.id.button_start:
                     timeroperation.timer_start_stop();
                     break;
@@ -94,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             int send_second = base_sec;
             Intent intent = new Intent(getApplication(), MainActivity2.class);
             intent.putExtra("send_second", send_second);
-            startActivity(intent);
+            startActivityForResult(intent, 1);
         }
     }
 

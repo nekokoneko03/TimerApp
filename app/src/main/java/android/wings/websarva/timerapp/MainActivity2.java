@@ -16,6 +16,9 @@ import java.util.List;
 
 public class MainActivity2 extends AppCompatActivity {
 
+    boolean is_pushed_yes = false;
+    String selected_time;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,12 +62,28 @@ public class MainActivity2 extends AppCompatActivity {
         finish();
     }
 
+    public void dialogClosedProcess() {
+        if (is_pushed_yes) {
+            ListItemClickListener test = new ListItemClickListener();
+            Intent intent = new Intent();
+            intent.putExtra("SelectedTime", "nekokuso");
+            setResult(RESULT_OK, intent);
+            Log.i("onClicked", selected_time);
+        }
+    }
+
+    public void setDialogResult(boolean value) {
+        //Log.i("onClick", String.valueOf(value));
+        this.is_pushed_yes = value;
+        //Log.i("onClicked", String.valueOf(is_pushed_yes));
+    }
+
     private class ListItemClickListener implements AdapterView.OnItemClickListener {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            String selected_time = (String) parent.getItemAtPosition(position);
-            Log.v("selected", selected_time);
+            selected_time = (String) parent.getItemAtPosition(position);
+            Log.i("selected", selected_time);
             ConfirmDialogFragment dialogFragment = new ConfirmDialogFragment();
             Bundle args = new Bundle();
             args.putString("VALUE01", selected_time);
