@@ -14,7 +14,8 @@ public class ConfirmDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        String str01 = getArguments().getString("VALUE01");
+        int int01 = getArguments().getInt("VALUE01");
+        String str01 = String.valueOf((int01 / 60) + ":00");
         String dialogMsg = String.format(getString(R.string.dialog_msg), str01);
         builder.setTitle(R.string.dialog_title);
         builder.setMessage(dialogMsg);
@@ -30,11 +31,12 @@ public class ConfirmDialogFragment extends DialogFragment {
         public void onClick(DialogInterface dialog, int which) {
             String msg = "";
             MainActivity2 ma2 = new MainActivity2();
-            String str01 = getArguments().getString("VALUE01");
+            int int01 = getArguments().getInt("VALUE01");
+            String str01 = String.valueOf((int01 / 60) + ":00");
             switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
                     msg = String.format(getString(R.string.dialog_ok_toast), str01);
-                    ma2.dialogClosedProcess(str01, true);
+                    ma2.dialogClosedProcess(int01, true);
                     break;
                 case DialogInterface.BUTTON_NEGATIVE:
                     msg = getString(R.string.dialog_ng_toast);

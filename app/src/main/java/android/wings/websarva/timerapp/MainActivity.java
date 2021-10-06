@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE && null != data) {
             Bundle bundle = data.getExtras();
             String baba = bundle.getString("SelectedTime");
+            tv_time.setText(baba);
             Log.i("uketotta", baba);
         }
     }
@@ -81,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
         TextView tv_Time = findViewById(R.id.tv_time);
         MainTimerTask tt = new MainTimerTask();
         Button bt_start = findViewById(R.id.button_start);
-        Button bt_reset = findViewById(R.id.button_reset);
 
         public void timer_reset_process() {
             tt.setSec(3120);
