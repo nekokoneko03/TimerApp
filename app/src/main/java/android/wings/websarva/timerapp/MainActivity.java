@@ -2,7 +2,6 @@ package android.wings.websarva.timerapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,9 +15,9 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity {
 
     android.os.Handler handler = new android.os.Handler();
-    int base_sec = 3120;
+    public int base_sec = 3120;
+    public int initial_sec = 3120;
     boolean is_timer_started = false;
-    boolean is_once_started = false;
     boolean is_paused = false;
     public static final String EXTRA_DATA = "YourPackageName.MESSAGE";
     static final int REQUEST_CODE = 1;
@@ -39,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
         bt_screen_transition.setOnClickListener(listener);
     }
 
+    public String convertTime(int num) {
+        return String.format(Locale.US, "%02d", num / 60) +
+                ":" + String.format(Locale.US, "%02d", num % 60);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -47,9 +51,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE && null != data) {
             Bundle bundle = data.getExtras();
-            String baba = bundle.getString("SelectedTime");
-            tv_time.setText(baba);
-            Log.i("uketotta", baba);
+            int received_time = bundle.getInt("SelectedTime");
+            base_sec = received_time;
+            initial_sec = received_time;
+            String converted_received_time = convertTime(received_time);
+            tv_time.setText(converted_received_time);
+            // Log.i("uketotta", String.valueOf(baba));
         }
     }
 
@@ -64,11 +71,11 @@ public class MainActivity extends AppCompatActivity {
                     timeroperation.timer_start_stop();
                     break;
                 case R.id.button_reset:
-                    timeroperation.timer_reset_process();
+                    timeroperation.timer_reset_process(initial_sec);
                     break;
-//                case R.id.button_screen_transition:
-//                    timeroperation.screen_transition_process();
-//                    break;
+                case R.id.button_screen_transition:
+                    timeroperation.screen_transition_process();
+                    break;
                 case R.id.tv_time:
                     timeroperation.screen_transition_process();
                     break;
@@ -82,15 +89,18 @@ public class MainActivity extends AppCompatActivity {
         TextView tv_Time = findViewById(R.id.tv_time);
         MainTimerTask tt = new MainTimerTask();
         Button bt_start = findViewById(R.id.button_start);
+        boolean is_once_started = false;
 
-        public void timer_reset_process() {
-            tt.setSec(3120);
-            tv_Time.setText(R.string.base_time);
+        public void timer_reset_process(int num) {
+            base_sec = num;
+            String converted_time = convertTime(num);
+            tv_Time.setText(converted_time);
             bt_start.setText(R.string.bt_start);
             MainTimerTask tt = new MainTimerTask();
             is_timer_started = false;
             is_paused = true;
         }
+
         public void timer_start_stop() {
             if (!is_timer_started) {
                 if (!is_once_started) {
@@ -115,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class MainTimerTask extends TimerTask {
-        int sec = 3120;
         boolean is_switched = false;
         String converted_time;
         TextView tv_Time = findViewById(R.id.tv_time);
@@ -128,33 +137,40 @@ public class MainActivity extends AppCompatActivity {
                     if (is_paused) {
 
                     } else {
-                        clockMove(sec);
-                        sec--;
+                        clockMove(base_sec);
+                        base_sec--;
                     }
 
                 }
             });
         }
         public void clockMove(int num) {
-            if (this.sec == 0) { switchTime(); }
-            this.converted_time = String.format(Locale.US, "%02d",  num / 60) +
-                    ":" + String.format(Locale.US,"%02d", num % 60);
+            if (base_sec == 0) {
+                if (initial_sec == 3120) {
+                    switchTime();
+                } else {
+                    new timerOperation().timer_reset_process(initial_sec);
+                }
+            }
+            this.converted_time = convertTime(num);
             tv_Time.setText(this.converted_time);
         }
+
+
         public void switchTime() {
             if (!this.is_switched) {
-                this.sec = 1020 + 1;
+                base_sec = 1020 + 1;
                 this.is_switched = true;
             } else if (this.is_switched) {
-                this.sec = 3120 + 1;
+                base_sec = 3120 + 1;
                 this.is_switched = false;
             }
         }
         public void setSec(int num) {
-            sec = num;
+            base_sec = num;
         }
         public int getSec() {
-            return this.sec;
+            return base_sec;
         }
     }
 }

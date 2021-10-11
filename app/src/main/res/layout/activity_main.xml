@@ -50,7 +50,7 @@
         android:id="@+id/button_screen_transition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dialog_show_btn"
+        android:text="@string/bt_change_screen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

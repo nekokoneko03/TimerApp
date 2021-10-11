@@ -39,7 +39,7 @@ public class MainActivity2 extends AppCompatActivity {
         ListView lvTime = findViewById(R.id.lvTime);
 
         timeList.add(3120); //52:00
-        timeList.add(180); //3
+        timeList.add(180); //3 test
         timeList.add(300); //5
 
         List<String> unkTime = new ArrayList<>();
@@ -62,6 +62,7 @@ public class MainActivity2 extends AppCompatActivity {
         public void onClick(View view) {
             Intent intent = new Intent();
             intent.putExtra("SelectedTime", selected_sec);
+            Log.i("送る時間", String.valueOf(selected_sec));
             setResult(RESULT_OK, intent);
             finish();
         }

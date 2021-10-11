@@ -4,8 +4,9 @@
     <string name="bt_start">スタート</string>
     <string name="bt_stop">ストップ</string>
     <string name="bt_reset">リセット</string>
-    <string name="dialog_show_btn">画面遷移テスト</string>
-    <string name="dialog_title">ダイアログだよ。</string>
+    <string name="bt_change_screen">タイマーの時間を変更</string>
+    <string name="bt_back_screen">前の画面に戻る</string>
+    <string name="dialog_title">ダイアログ</string>
     <string name="dialog_msg">時間を%sにセットしますか？</string>
     <string name="dialog_btn_ok">はい</string>
     <string name="dialog_btn_ng">いいえ</string>
