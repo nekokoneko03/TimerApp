@@ -52,6 +52,8 @@ public class MainActivity2 extends AppCompatActivity {
         lvTime.setOnItemClickListener(new ListItemClickListener());
 
         Button button_screen_return = findViewById(R.id.button_screen_return);
+        Button button_add_time = findViewById(R.id.button_add_time);
+        button_add_time.setOnClickListener(secondlistener);
         button_screen_return.setOnClickListener(secondlistener);
 
     }
@@ -60,11 +62,19 @@ public class MainActivity2 extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent();
-            intent.putExtra("SelectedTime", selected_sec);
-            Log.i("送る時間", String.valueOf(selected_sec));
-            setResult(RESULT_OK, intent);
-            finish();
+            TimeInputDialogFragment test1 = new TimeInputDialogFragment();
+            switch (view.getId()) {
+                case R.id.button_screen_return:
+                    Intent intent = new Intent();
+                    intent.putExtra("SelectedTime", selected_sec);
+                    Log.i("送る時間", String.valueOf(selected_sec));
+                    setResult(RESULT_OK, intent);
+                    finish();
+                case R.id.button_add_time:
+                    Log.i("popo", "押されたよアドボタンが");
+                    test1.show(getSupportFragmentManager(), "timePicker");
+            }
+
         }
     }
 
