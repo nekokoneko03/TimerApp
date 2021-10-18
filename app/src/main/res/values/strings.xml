@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">5217 Timer</string>
     <string name="base_time">52:00</string>
+
     <string name="bt_start">スタート</string>
     <string name="bt_stop">ストップ</string>
     <string name="bt_reset">リセット</string>
     <string name="bt_change_screen">タイマーの時間を変更</string>
     <string name="bt_back_screen">前の画面に戻る</string>
+    <string name="bt_add_time">時間を追加する</string>
+
     <string name="dialog_title">ダイアログ</string>
     <string name="dialog_msg">時間を%sにセットしますか？</string>
     <string name="dialog_btn_ok">はい</string>
@@ -13,8 +16,4 @@
     <string name="dialog_ok_toast">時間を%sにセットしました。</string>
     <string name="dialog_ng_toast">キャンセルしました</string>
 
-    <string-array name="time_list">
-        <item>52:00 - 17:00</item>
-        <item>3:00</item>
-    </string-array>
 </resources>

@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     public int initial_sec = 3120;
     boolean is_timer_started = false;
     boolean is_paused = false;
+    private TestOpenHelper helper;
     public static final String EXTRA_DATA = "YourPackageName.MESSAGE";
     static final int REQUEST_CODE = 1;
 
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        helper = new TestOpenHelper(getApplicationContext());
 
         TextView tv_time = findViewById(R.id.tv_time);
         Button bt_start = findViewById(R.id.button_start);

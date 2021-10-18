@@ -7,19 +7,33 @@
     tools:context=".MainActivity2">
 
     <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bt_add_time"
+        app:layout_constraintBottom_toTopOf="@+id/button_screen_return"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvTime"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
         android:id="@+id/button_screen_return"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:text="@string/bt_back_screen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvTime" />
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <ListView
         android:id="@+id/lvTime"
-        android:layout_width="409dp"
-        android:layout_height="541dp"
+        android:layout_width="413dp"
+        android:layout_height="489dp"
         android:choiceMode="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
