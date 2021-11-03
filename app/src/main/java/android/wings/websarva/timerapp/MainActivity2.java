@@ -78,6 +78,10 @@ public class MainActivity2 extends AppCompatActivity {
         }
     }
 
+    public void getTimeFunction(int result) {
+        Log.i("値が帰ってきたか否か", result + "という値が帰ってきたよ！");
+    }
+
     private class ListItemClickListener implements AdapterView.OnItemClickListener {
 
         @Override
