@@ -26,6 +26,7 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         secondListener secondlistener = new secondListener();
+        AppDatabase db = AppDatabaseSingleton.getInstance(getApplicationContext());
 
         Intent intent = getIntent();
 
@@ -80,6 +81,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     public void getTimeFunction(int result) {
         Log.i("値が帰ってきたか否か", result + "という値が帰ってきたよ！");
+
     }
 
     private class ListItemClickListener implements AdapterView.OnItemClickListener {
